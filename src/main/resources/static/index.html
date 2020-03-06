@@ -16,12 +16,28 @@
                 });
             });
         });
-        </script>
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#get_one').click(function (){
+                var url="/employees/" + $('#id_one').val();
+                $.get(url,
+                function(employee) {
+                    $('#result_get_one').empty();
+                    $('#result_get_one').append("Id: " + employee.id + ", Name: " + employee.name + ", Role: " + employee.role);
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 <h1>Simple HTTP service (RPC)</h1>
 <h2>Get all the employees</h2>
     <button id="get_all">Get them!</button>
     <p id="result"></p>
+<h2>Get one employee</h2>
+    <p>Employee id: <input id="id_one" type="test"></p>
+    <button id="get_one">Get it!</button>
+    <p id="result_get_one"></p>
 </body>
 </html>
