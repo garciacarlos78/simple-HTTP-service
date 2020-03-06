@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple HTTP service (RPC)</title>
+    <script src="jquery-3.4.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#get_all').click(function (){
+                $.get("/employees",
+                function(employees) {
+                    $('#result').empty();
+                    $.each(employees, function(i, employee) {
+                        $('#result').append("Id: " + employee.id + ", Name: " + employee.name + ", Role: " + employee.role + "<br>");
+                    });
+                });
+            });
+        });
+        </script>
+</head>
+<body>
+<h1>Simple HTTP service (RPC)</h1>
+<h2>Get all the employees</h2>
+    <button id="get_all">Get them!</button>
+    <p id="result"></p>
+</body>
+</html>
