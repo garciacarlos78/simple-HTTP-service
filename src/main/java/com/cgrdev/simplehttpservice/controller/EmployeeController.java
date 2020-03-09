@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cgrdev.simplehttpservice.model.data.Employee;
 import com.cgrdev.simplehttpservice.model.data.EmployeeRepository;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,6 +62,8 @@ class EmployeeController {
 
     @DeleteMapping("/employees/{id}")
     void deleteEmployee(@PathVariable Long id) {
-        repository.deleteById(id);
+
+        if (repository.existsById(id)) repository.deleteById(id);
+        else throw new EmployeeNotFoundException(id);
     }
 }

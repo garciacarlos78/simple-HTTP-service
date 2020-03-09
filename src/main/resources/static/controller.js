@@ -44,7 +44,7 @@ $(document).ready(function () {
         }
     });
     $('#update').click(function (){
-        if ($('#post_name').val() || $('#post_role').val()){
+        if ($('#id_put').val() && ($('#post_name').val() || $('#post_role').val())){
             $.ajax({
                 url: "/employees/" + $('#id_put').val(),
                 dataType: "json",
@@ -65,6 +65,22 @@ $(document).ready(function () {
             });
         } else {
             alert("Faltan campos!!!");
+        }
+    });
+    $('#delete').click(function (){
+        if ($('#id_put').val()){
+            $.ajax({
+                url: "/employees/" + $('#id_put').val(),
+                type: "DELETE",
+                success: function(){
+                    $('#result_add_one').empty();
+                    $('#result_add_one').append("Successfully deleted employee!!!<br>");
+                },
+                error: function(stat) {
+                    $('#result_add_one').empty();
+                    $('#result_add_one').append(stat.responseText);
+                }
+            });
         }
     });
 });
