@@ -3,38 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Simple HTTP service (RPC)</title>
-    <script src="jquery-3.4.1.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#get_all').click(function (){
-                $.get("/employees",
-                function(employees) {
-                    $('#result').empty();
-                    $.each(employees, function(i, employee) {
-                        $('#result').append("Id: " + employee.id + ", Name: " + employee.name + ", Role: " + employee.role + "<br>");
-                    });
-                });
-            });
-        });
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous">
     </script>
-    <script>
-        $(document).ready(function () {
-            $('#get_one').click(function (){
-                if ($('#id_one').val()) {
-                    var url="/employees/" + $('#id_one').val();
-                    $.get(url,
-                    function(employee) {
-                        $('#result_get_one').empty();
-                        $('#result_get_one').append("Id: " + employee.id + ", Name: " + employee.name + ", Role: " + employee.role);
-                    }).fail(function(stat, text, error){
-                        $('#result_get_one').empty();
-                        $('#result_get_one').append(stat.responseText);
-.responseText);-->
-                    });
-                }
-            });
-        });
-    </script>
+    <script src="controller.js"></script>
 </head>
 <body>
 <h1>Simple HTTP service (RPC)</h1>
