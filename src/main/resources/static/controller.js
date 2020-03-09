@@ -23,7 +23,6 @@ $(document).ready(function () {
     });
     $('#add_one').click(function (){
         if ($('#post_name').val() && $('#post_role').val()){
-//            alert("Name: " + $('#post_name').val() + "\nRole: " + $('#post_role').val());
             $.ajax({
                 url: "/employees",
                 dataType: "json",
@@ -38,6 +37,30 @@ $(document).ready(function () {
                 },
                 error: function(stat) {
                     alert(stat.responseText);
+                }
+            });
+        } else {
+            alert("Faltan campos!!!");
+        }
+    });
+    $('#update').click(function (){
+        if ($('#post_name').val() || $('#post_role').val()){
+            $.ajax({
+                url: "/employees/" + $('#id_put').val(),
+                dataType: "json",
+                type: "PUT",
+                contentType: "application/json",
+                data: JSON.stringify({"name": $('#post_name').val(),"role": $('#post_role').val()}),
+                processData: false,
+                success: function(employee){
+                    $('#result_add_one').empty();
+                    $('#result_add_one').append("Successfully updated employee!!!<br>");
+                    $('#result_add_one').append("Id: " + employee.id + ", Name: " + employee.name + ", Role: " + employee.role);
+                },
+                error: function(stat) {
+                    $('#result_add_one').empty();
+                    $('#result_add_one').append(stat.responseText);
+                    // alert(stat.responseText);
                 }
             });
         } else {

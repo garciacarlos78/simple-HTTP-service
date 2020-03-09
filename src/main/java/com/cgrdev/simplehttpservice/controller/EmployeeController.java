@@ -48,14 +48,15 @@ class EmployeeController {
 
         return repository.findById(id)
                 .map(employee -> {
-                    employee.setName(newEmployee.getName());
-                    employee.setRole(newEmployee.getRole());
+                    if (newEmployee.getName()!="") employee.setName(newEmployee.getName());
+                    if (newEmployee.getRole()!="") employee.setRole(newEmployee.getRole());
                     return repository.save(employee);
                 })
-                .orElseGet(() -> {
+                .orElseThrow(() -> new EmployeeNotFoundException(id));
+/*                .orElseGet(() -> {
                     newEmployee.setId(id);
                     return repository.save(newEmployee);
-                });
+                });*/
     }
 
     @DeleteMapping("/employees/{id}")
