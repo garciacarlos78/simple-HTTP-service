@@ -22,7 +22,12 @@
 <h2>Add / Update / Delete an employee</h2>
 <p>Employee id (just for updates and deletions): <input id="id_put" type="number"></p>
 <p>Employee name: <input id="post_name" type="text"></p>
-<p>Employee role: <input id="post_role" type="text"></p>
+<p>Employee role:
+    <select id="post_role">
+        <option>juniorDev</option>
+        <option>seniorDev</option>
+        <option>softArch</option>
+    </select></p>
 <button id="add_one">Add it!</button><button id="update">Update it!</button><button id="delete">Delete it!</button>
 <p id="result_add_one"></p>
 </body>

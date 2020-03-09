@@ -4,7 +4,7 @@ $(document).ready(function () {
         function(employees) {
             $('#result').empty();
             $.each(employees, function(i, employee) {
-                $('#result').append("Id: " + employee.id + ", Name: " + employee.name + ", Role: " + employee.role + "<br>");
+                $('#result').append("Id: " + employee.id + ", Name: " + employee.name + ", Role: " + employee.role + ", Salary: " + employee.salary + "k €<br>");
             });
         });
     });
@@ -14,7 +14,7 @@ $(document).ready(function () {
             $.get(url,
             function(employee) {
                 $('#result_get_one').empty();
-                $('#result_get_one').append("Id: " + employee.id + ", Name: " + employee.name + ", Role: " + employee.role);
+                $('#result_get_one').append("Id: " + employee.id + ", Name: " + employee.name + ", Role: " + employee.role + ", Salary: " + employee.salary + "k €<br>");
             }).fail(function(stat){
                 $('#result_get_one').empty();
                 $('#result_get_one').append(stat.responseText);
@@ -33,14 +33,14 @@ $(document).ready(function () {
                 success: function(employee){
                     $('#result_add_one').empty();
                     $('#result_add_one').append("Successfully added employee!!!<br>");
-                    $('#result_add_one').append("Id: " + employee.id + ", Name: " + employee.name + ", Role: " + employee.role);
+                    $('#result_add_one').append("Id: " + employee.id + ", Name: " + employee.name + ", Role: " + employee.role + ", Salary: " + employee.salary + "k €<br>");
                 },
                 error: function(stat) {
                     alert(stat.responseText);
                 }
             });
         } else {
-            alert("Faltan campos!!!");
+            alert("Please fill in name and role to create a new employee.");
         }
     });
     $('#update').click(function (){
@@ -55,7 +55,7 @@ $(document).ready(function () {
                 success: function(employee){
                     $('#result_add_one').empty();
                     $('#result_add_one').append("Successfully updated employee!!!<br>");
-                    $('#result_add_one').append("Id: " + employee.id + ", Name: " + employee.name + ", Role: " + employee.role);
+                    $('#result_add_one').append("Id: " + employee.id + ", Name: " + employee.name + ", Role: " + employee.role + ", Salary: " + employee.salary + "k €<br>");
                 },
                 error: function(stat) {
                     $('#result_add_one').empty();
@@ -64,7 +64,7 @@ $(document).ready(function () {
                 }
             });
         } else {
-            alert("Faltan campos!!!");
+            alert("Please fill in employee id and at least name or salary to update an employee.");
         }
     });
     $('#delete').click(function (){

@@ -2,22 +2,43 @@ package com.cgrdev.simplehttpservice.model.data;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
 public class Employee {
 
+    enum ROLE {
+        juniorDev,
+        seniorDev,
+        softArch
+    }
+
     private @Id @GeneratedValue Long id;
     private String name;
-    private String role;
+    private ROLE role;
+    private int salary;
 
     Employee() {}
 
-    Employee(String name, String role) {
+    Employee(String name, ROLE role) {
         this.name = name;
         this.role = role;
+    }
+
+    @PreUpdate
+    @PrePersist
+    public void calcSalary() {
+        switch (role){
+            case juniorDev:
+                salary=30;
+                break;
+            case seniorDev:
+                salary=60;
+                break;
+            case softArch:
+                salary=100;
+                break;
+        }
     }
 }
