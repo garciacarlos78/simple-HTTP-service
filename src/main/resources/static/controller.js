@@ -60,7 +60,6 @@ $(document).ready(function () {
                 error: function(stat) {
                     $('#result_add_one').empty();
                     $('#result_add_one').append(stat.responseText);
-                    // alert(stat.responseText);
                 }
             });
         } else {
@@ -82,5 +81,17 @@ $(document).ready(function () {
                 }
             });
         }
+    });
+    $('#find_by_role').click(function (){
+        $.get("/employees/role/" + $('#post_role').val(),
+        function(employees) {
+            $('#result_add_one').empty();
+            $.each(employees, function(i, employee) {
+                $('#result_add_one').append("Id: " + employee.id + ", Name: " + employee.name + ", Role: " + employee.role + ", Salary: " + employee.salary + "k €<br>");
+            });
+        }).fail(function(stat){
+            $('#result_add_one').empty();
+            $('#result_add_one').append(stat.responseText);
+        });
     });
 });

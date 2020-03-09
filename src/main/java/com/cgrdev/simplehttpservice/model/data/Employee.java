@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 public class Employee {
 
-    enum ROLE {
+    public enum ROLE {
         juniorDev,
         seniorDev,
         softArch

@@ -1,10 +1,12 @@
 package com.cgrdev.simplehttpservice.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.cgrdev.simplehttpservice.controller.exceptions.EmployeeNotFoundException;
+import com.cgrdev.simplehttpservice.controller.exceptions.EmptyRoleException;
 import com.cgrdev.simplehttpservice.model.data.Employee;
 import com.cgrdev.simplehttpservice.model.data.EmployeeRepository;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,6 +44,22 @@ class EmployeeController {
 
         return repository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException(id));
+    }
+
+    @GetMapping("/employees/role/{role}")
+    List<Employee> employeesByRole(@PathVariable
+                                           Employee.ROLE role) {
+
+        List<Employee> allEmployees = repository.findAll();
+        List<Employee> roleEmployees = new ArrayList<>();
+
+        for (Employee employee :
+                allEmployees) {
+            if (employee.getRole().equals(role)) roleEmployees.add(employee);
+        }
+
+        if (roleEmployees.size()==0) throw new EmptyRoleException(role);
+        else return roleEmployees;
     }
 
     @PutMapping("/employees/{id}")

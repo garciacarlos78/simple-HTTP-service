@@ -1,4 +1,4 @@
-package com.cgrdev.simplehttpservice.controller;
+package com.cgrdev.simplehttpservice.controller.exceptions;
 
 public class EmployeeNotFoundException extends RuntimeException {
     public EmployeeNotFoundException(Long id) {
