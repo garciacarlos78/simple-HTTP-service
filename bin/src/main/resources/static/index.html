@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple HTTP service (RPC)</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous">
+    </script>
+    <script src="controller.js"></script>
+</head>
+<body>
+<h1>Simple HTTP service (RPC)</h1>
+<h2>Get all the employees</h2>
+<button id="get_all">Get them!</button>
+<p id="result"></p>
+<h2>Get one employee</h2>
+<p>Employee id: <input id="id_one" type="number"></p>
+<button id="get_one">Get it!</button>
+<p id="result_get_one"></p>
+<h2>Add / Update / Delete an employee - Find by role</h2>
+<p>Employee id (just for updates and deletions): <input id="id_put" type="number"></p>
+<p>Employee name: <input id="post_name" type="text"></p>
+<p>Employee role:
+    <select id="post_role">
+        <option>juniorDev</option>
+        <option>seniorDev</option>
+        <option>softArch</option>
+    </select></p>
+<button id="add_one">Add it!</button><button id="update">Update it!</button><button id="delete">Delete it!</button><button id="find_by_role">Find by role</button>
+<p id="result_add_one"></p>
+</body>
+</html>
